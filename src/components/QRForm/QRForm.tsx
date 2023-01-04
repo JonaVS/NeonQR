@@ -78,7 +78,7 @@ const QRForm = () => {
         </Flex>
         <QRFormHeading text="Image" />
         <Flex alignItems="center">
-          <QRFormIconPicker />
+          <QRFormIconPicker isDisabled={!withImg} />
           <QRFormSwitch
             text="Image"
             idForLabel="image"
