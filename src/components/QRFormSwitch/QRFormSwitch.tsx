@@ -1,6 +1,6 @@
-import { Flex, FlexProps, FormLabel, Switch, Text } from "@chakra-ui/react";
+import { Flex, FormLabel, Switch, SwitchProps, Text } from "@chakra-ui/react";
 
-type Props = FlexProps & {
+type Props = SwitchProps & {
   text: string
   idForLabel: string 
 }
@@ -9,7 +9,7 @@ const shadowColor = "#d69ef7"
 
 const QRFormSwitch = ({text, idForLabel, ...props}: Props) => {
   return (
-    <Flex {...props}>
+    <Flex marginLeft="auto">
       <FormLabel htmlFor={idForLabel}>
         <Text
           as="span"
@@ -19,7 +19,7 @@ const QRFormSwitch = ({text, idForLabel, ...props}: Props) => {
           {text}
         </Text>
       </FormLabel>
-      <Switch id={idForLabel} size="lg" colorScheme="teal" />
+      <Switch id={idForLabel} size="lg" colorScheme="teal" {...props} />
     </Flex>
   );
 };

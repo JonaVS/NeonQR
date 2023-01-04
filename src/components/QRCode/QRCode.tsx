@@ -1,21 +1,32 @@
 import React from "react";
 import { StyledQRCodeSVG } from "./QRCode.styles";
-import defaultImg from '../../assets/defaultImg.png'
+import defaultImg from "../../assets/defaultImg.png";
 
 type Props = {
-  bgColor?: string | undefined
-  color?: string | undefined
-}
+  bgColor?: string | undefined;
+  color?: string | undefined;
+  glow?: boolean;
+};
 
-const QRCode = ({bgColor, color}:Props) => {
+const QRCode = ({ bgColor, color, glow = true }: Props) => {
   return (
     <>
       <svg height="0">
         <filter id="f1">
-          <feDropShadow dx="0" dy="0" stdDeviation="0.4" floodColor={color} />
+          <feDropShadow
+            dx="0"
+            dy="0"
+            stdDeviation={`${glow ? "0.4" : "0"}`}
+            floodColor={color}
+          />
         </filter>
         <filter id="f2">
-          <feDropShadow dx="0" dy="0" stdDeviation="7" floodColor={color} />
+          <feDropShadow
+            dx="0"
+            dy="0"
+            stdDeviation={`${glow ? "7" : "0"}`}
+            floodColor={color}
+          />
         </filter>
       </svg>
       <StyledQRCodeSVG

@@ -5,6 +5,7 @@ export type QRFormState = {
     contentColor: string;
     bgColor: string;
   };
+  glow: boolean
 };
 
 const initialState: QRFormState = {
@@ -12,6 +13,7 @@ const initialState: QRFormState = {
     contentColor: "#00ffff",
     bgColor: "#000000",
   },
+  glow: true
 };
 
 export type ColorPayload = {
@@ -28,8 +30,11 @@ export const QRFormSlice = createSlice({
         ? (state.colors.contentColor = action.payload.color)
         : (state.colors.bgColor = action.payload.color);
     },
+    toggleGlowEffect: (state, action:PayloadAction<boolean>) => {
+      state.glow = action.payload
+    }
   },
 });
 
-export const { changeColor } = QRFormSlice.actions;
+export const { changeColor, toggleGlowEffect } = QRFormSlice.actions;
 export default QRFormSlice.reducer;

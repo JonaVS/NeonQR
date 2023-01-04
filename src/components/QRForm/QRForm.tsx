@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
-import { changeColor, ColorPayload } from "./QRFormSlice";
+import { changeColor, ColorPayload, toggleGlowEffect } from "./QRFormSlice";
 import { useDebouncedCallback } from "use-debounce";
 import { chakra, Stack, Flex } from "@chakra-ui/react";
 import QRFormColorInput from "../QRFormColorInput/QRFormColorInput";
@@ -12,7 +12,7 @@ import QRFormHeading from "../QRFormHeading/QRFormHeading";
 import QRFormButton from "../QRFormButton/QRFormButton";
 
 const QRForm = () => {
-  const { colors } = useSelector((state: RootState) => state.qrform);
+  const { colors, glow } = useSelector((state: RootState) => state.qrform);
   const dispatch = useDispatch();
 
   const debouncedOnColorChange = useDebouncedCallback(
@@ -25,6 +25,10 @@ const QRForm = () => {
     },
     300
   );
+
+  const handleSwitchGlowToggle = ():void => {
+    dispatch(toggleGlowEffect(!glow))
+  }
 
   useEffect(() => {
     return debouncedOnColorChange.cancel;
@@ -45,12 +49,17 @@ const QRForm = () => {
             name="contentColor"
             onChange={debouncedOnColorChange}
           />
-          <QRFormSwitch text="Glow" idForLabel="glow" marginLeft="auto" />
+          <QRFormSwitch
+            text="Glow"
+            idForLabel="glow"
+            isChecked={glow}
+            onChange={handleSwitchGlowToggle}
+          />
         </Flex>
         <QRFormHeading text="Icon" />
         <Flex alignItems="center">
           <QRFormIconPicker />
-          <QRFormSwitch text="Icon" idForLabel="icon" marginLeft="auto" />
+          <QRFormSwitch text="Icon" idForLabel="icon" />
         </Flex>
         <QRFormHeading text="Content" />
         <QRFormTextInput />
