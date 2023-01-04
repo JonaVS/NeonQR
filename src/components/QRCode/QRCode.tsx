@@ -6,9 +6,15 @@ type Props = {
   bgColor?: string | undefined;
   color?: string | undefined;
   glow?: boolean;
+  content?: string;
 };
 
-const QRCode = ({ bgColor, color, glow = true }: Props) => {
+const QRCode = ({
+  bgColor,
+  color,
+  glow = true,
+  content = "https://github.com/JonaVS",
+}: Props) => {
   return (
     <>
       <svg height="0">
@@ -32,7 +38,7 @@ const QRCode = ({ bgColor, color, glow = true }: Props) => {
       <StyledQRCodeSVG
         color={color}
         bgColor={bgColor}
-        value="https://github.com/JonaVS"
+        value={content}
         size={250}
         imageSettings={{
           src: defaultImg,

@@ -1,6 +1,8 @@
-import { Input } from "@chakra-ui/react";
+import { Input, InputProps } from "@chakra-ui/react";
 
-const QRFormTextInput = () => {
+type Props = InputProps
+
+const QRFormTextInput = (props:Props) => {
   return (
     <Input
       type="text"
@@ -12,6 +14,7 @@ const QRFormTextInput = () => {
       margin={0}
       _focus={{ borderBottom: "solid 1px #8c00ff", boxShadow: "none" }}
       _placeholder={{color: '#555555', textShadow: "none"}}
+      {...props}
     />
   );
 };
