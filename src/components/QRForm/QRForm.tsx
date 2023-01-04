@@ -1,14 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../store/store";
-import {
-  changeColor,
-  ColorPayload,
-  toggleGlowEffect,
-  changeContent,
-  toggleWithImg,
-} from "./QRFormSlice";
-import { useDebouncedCallback } from "use-debounce";
+import React from "react";
+import { useQRForm } from "../../hooks/useQRForm";
 import { chakra, Stack, Flex } from "@chakra-ui/react";
 import QRFormColorInput from "../QRFormColorInput/QRFormColorInput";
 import QRFormSwitch from "../QRFormSwitch/QRFormSwitch";
@@ -18,41 +9,15 @@ import QRFormHeading from "../QRFormHeading/QRFormHeading";
 import QRFormButton from "../QRFormButton/QRFormButton";
 
 const QRForm = () => {
-  const { colors, glow, withImg } = useSelector((state: RootState) => state.qrform)
-  const dispatch = useDispatch();
-
-  const debouncedOnColorChange = useDebouncedCallback(
-    (event: React.ChangeEvent<HTMLInputElement>): void => {
-      const payload: ColorPayload = {
-        colorType: event.target.name === "contentColor" ? "contentColor" : "bgColor",
-        color: event.target.value,
-      };
-      dispatch(changeColor(payload));
-    },
-    300
-  );
-
-  const debouncedOnContentChange = useDebouncedCallback(
-    (event: React.ChangeEvent<HTMLInputElement>): void => {
-      dispatch(changeContent(event.target.value));
-    },
-    300
-  );
-
-  const handleSwitchGlowToggle = (): void => {
-    dispatch(toggleGlowEffect(!glow));
-  };
-
-  const handleSwitchWithImgToggle = (): void => {
-    dispatch(toggleWithImg(!withImg));
-  };
-
-  useEffect(() => {
-    return (): void => {
-      debouncedOnColorChange.cancel;
-      debouncedOnContentChange.cancel;
-    };
-  }, []);
+  const {
+    state,
+    handleSwitchGlowToggle,
+    handleSwitchWithImgToggle,
+    debouncedHandleColorChange,
+    debouncedHandleContentChange,
+  } = useQRForm();
+  
+  const {colors, glow, withImg} = state
 
   return (
     <chakra.form marginTop={12}>
@@ -62,12 +27,12 @@ const QRForm = () => {
           <QRFormColorInput
             defaultValue={colors.bgColor}
             name="bgColor"
-            onChange={debouncedOnColorChange}
+            onChange={debouncedHandleColorChange}
           />
           <QRFormColorInput
             defaultValue={colors.contentColor}
             name="contentColor"
-            onChange={debouncedOnColorChange}
+            onChange={debouncedHandleColorChange}
           />
           <QRFormSwitch
             text="Glow"
@@ -87,7 +52,7 @@ const QRForm = () => {
           />
         </Flex>
         <QRFormHeading text="Content" />
-        <QRFormTextInput defaultValue="" onChange={debouncedOnContentChange} />
+        <QRFormTextInput defaultValue="" onChange={debouncedHandleContentChange} />
         <QRFormButton />
       </Stack>
     </chakra.form>
