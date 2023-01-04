@@ -6,7 +6,9 @@ import QRCode from "../QRCode/QRCode";
 import QRForm from "../QRForm/QRForm";
 
 const QRBuilder = () => {
-  const { colors, glow, content } = useSelector((state: RootState) => state.qrform);
+  const { colors, glow, content, withImg } = useSelector(
+    (state: RootState) => state.qrform
+  );
 
   return (
     <Box
@@ -22,6 +24,7 @@ const QRBuilder = () => {
         color={colors.contentColor}
         glow={glow}
         content={content}
+        withImg={withImg}
       />
       <QRForm />
     </Box>

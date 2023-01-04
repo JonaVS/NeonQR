@@ -7,6 +7,7 @@ type Props = {
   color?: string | undefined;
   glow?: boolean;
   content?: string;
+  withImg?: boolean;
 };
 
 const QRCode = ({
@@ -14,7 +15,13 @@ const QRCode = ({
   color,
   glow = true,
   content = "https://github.com/JonaVS",
+  withImg = true,
 }: Props) => {
+
+  const imageSettings = withImg
+    ? { src: defaultImg, excavate: true, height: 40, width: 40 }
+    : undefined;
+
   return (
     <>
       <svg height="0">
@@ -40,12 +47,7 @@ const QRCode = ({
         bgColor={bgColor}
         value={content}
         size={250}
-        imageSettings={{
-          src: defaultImg,
-          excavate: true,
-          height: 40,
-          width: 40,
-        }}
+        imageSettings={imageSettings}
       />
     </>
   );
