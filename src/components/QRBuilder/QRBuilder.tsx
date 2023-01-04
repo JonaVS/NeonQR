@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 import { Box } from "@chakra-ui/react";
 import QRCode from "../QRCode/QRCode";
 import QRForm from "../QRForm/QRForm";
 
 const QRBuilder = () => {
-  const [color, setColor] = useState("#00ffff");
-  const [bgColor, setBgColor] = useState("#000000");
+  const { colors } = useSelector((state: RootState) => state.qrform);
 
   return (
     <Box
@@ -16,7 +17,7 @@ const QRBuilder = () => {
       boxShadow="0 0 15px #000000, 0 0 15px #000000"
       rounded="lg"
     >
-      <QRCode color={color} bgColor={bgColor} />
+      <QRCode bgColor={colors.bgColor} color={colors.contentColor} />
       <QRForm />
     </Box>
   );
