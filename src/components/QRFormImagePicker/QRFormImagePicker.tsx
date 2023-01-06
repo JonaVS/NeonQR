@@ -6,7 +6,7 @@ type Props = InputProps & {
   selectedImgURL: string | null
 };
 
-const QRFormIconPicker = (props: Props) => {
+const QRFormImagePicker = (props: Props) => {
   let disabledStyleProps = {};
 
   if (props.isDisabled) {
@@ -45,4 +45,4 @@ const QRFormIconPicker = (props: Props) => {
   );
 };
 
-export default QRFormIconPicker;
+export default QRFormImagePicker;

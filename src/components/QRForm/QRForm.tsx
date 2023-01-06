@@ -3,7 +3,7 @@ import { useQRForm } from "../../hooks/useQRForm";
 import { chakra, Stack, Flex } from "@chakra-ui/react";
 import QRFormColorInput from "../QRFormColorInput/QRFormColorInput";
 import QRFormSwitch from "../QRFormSwitch/QRFormSwitch";
-import QRFormIconPicker from "../QRFormIconPicker/QRFormIconPicker";
+import QRFormImagePicker from "../QRFormImagePicker/QRFormImagePicker";
 import QRFormTextInput from "../QRFormTextInput/QRFormTextInput";
 import QRFormHeading from "../QRFormHeading/QRFormHeading";
 import QRFormButton from "../QRFormButton/QRFormButton";
@@ -44,7 +44,7 @@ const QRForm = () => {
         </Flex>
         <QRFormHeading text="Image" />
         <Flex alignItems="center">
-          <QRFormIconPicker
+          <QRFormImagePicker
             isDisabled={!withImg}
             onChange={handleImgFileChange}
             selectedImgURL={selectedImgURL}
