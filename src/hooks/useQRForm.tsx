@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useDebouncedCallback } from "use-debounce";
+import { useToast } from "@chakra-ui/react";
 import { RootState } from "../store/store";
 import {
   changeColor,
@@ -8,13 +10,13 @@ import {
   toggleWithImg,
   ColorPayload,
 } from "../components/QRForm/QRFormSlice";
-import { useDebouncedCallback } from "use-debounce";
 import { optimizeQRCodeImg } from "../utils/imgOptimizer";
 
 export const useQRForm = () => {
   const { colors, glow, withImg, selectedImgURL } = useSelector((state: RootState) => state.qrform);
 
   const dispatch = useDispatch();
+  const toast = useToast();
 
   let fileReader: FileReader
 
@@ -51,7 +53,17 @@ export const useQRForm = () => {
   const handleImgFileChange = ( event: React.ChangeEvent<HTMLInputElement>): void => {
     if (!event.target.files || event.target.value.length == 0) return;
     const selectedFile = event.target.files[0];
-    if (!selectedFile.type.match(mimeType)) return
+    if (!selectedFile.type.match(mimeType)) {
+      toast({
+        title: 'Accepted files formats',
+        description: "Please select a png, jpg or jpeg file 😀",
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+        variant: "left-accent",
+      })
+      return
+    }
     
     fileReader = new FileReader();
     fileReader.onloadend = () => {
