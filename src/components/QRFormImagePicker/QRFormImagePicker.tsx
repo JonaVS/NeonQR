@@ -31,7 +31,7 @@ const QRFormImagePicker = (props: Props) => {
         display="none"
         isDisabled={props.isDisabled}
         onChange={props.onChange}
-        accept="image/*"
+        accept="image/png, image/jpeg, image/jpg,"
       />
       <Image
         height="40px"
