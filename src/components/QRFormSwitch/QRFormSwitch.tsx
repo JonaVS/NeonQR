@@ -19,7 +19,7 @@ const QRFormSwitch = ({text, idForLabel, ...props}: Props) => {
           {text}
         </Text>
       </FormLabel>
-      <Switch id={idForLabel} size="lg" colorScheme="teal" {...props} />
+      <Switch id={idForLabel} size="lg" variant="purply" {...props} />
     </Flex>
   );
 };

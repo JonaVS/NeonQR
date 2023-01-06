@@ -1,4 +1,5 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { switchTheme } from "./components/QRFormSwitch/switchCustomTheme";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -28,6 +29,7 @@ const theme = extendTheme({
       pink: '#f10ade',
     },
   },
+  components: {Switch: switchTheme}
 });
 
 export default theme;
