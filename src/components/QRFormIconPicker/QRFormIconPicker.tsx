@@ -2,12 +2,14 @@ import React from "react";
 import { FormLabel, Image, Input, InputProps } from "@chakra-ui/react";
 import defaultImg from "../../assets/defaultImg.png";
 
-type Props = InputProps;
+type Props = InputProps & {
+  selectedImgURL: string | null
+};
 
-const QRFormIconPicker = ({ isDisabled = false }: Props) => {
+const QRFormIconPicker = (props: Props) => {
   let disabledStyleProps = {};
 
-  if (isDisabled) {
+  if (props.isDisabled) {
     disabledStyleProps = {
       filter: "auto",
       blur: "5px",
@@ -21,21 +23,22 @@ const QRFormIconPicker = ({ isDisabled = false }: Props) => {
       width="40px"
       height="40px"
       margin={0}
-      rounded="full"
-      backgroundColor="black"
       cursor="pointer"
     >
       <Input
         id="QRIconInput"
         type="file"
         display="none"
-        isDisabled={isDisabled}
+        isDisabled={props.isDisabled}
+        onChange={props.onChange}
+        accept="image/*"
       />
       <Image
         height="40px"
         width="40px"
-        objectFit="contain"
-        src={defaultImg}
+        objectFit="cover"
+        rounded="full"
+        src={props.selectedImgURL ? props.selectedImgURL : defaultImg}
         {...disabledStyleProps}
       />
     </FormLabel>

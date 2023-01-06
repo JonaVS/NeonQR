@@ -8,6 +8,7 @@ export type QRFormState = {
   glow: boolean
   content: string
   withImg: boolean
+  selectedImgURL: string | null
 };
 
 const initialState: QRFormState = {
@@ -17,7 +18,8 @@ const initialState: QRFormState = {
   },
   glow: true,
   content: "https://github.com/JonaVS",
-  withImg: true
+  withImg: true,
+  selectedImgURL: null
 };
 
 export type ColorPayload = {
@@ -42,9 +44,18 @@ export const QRFormSlice = createSlice({
     },
     toggleWithImg: (state, action:PayloadAction<boolean>) => {
       state.withImg = action.payload
-    } 
+    },
+    changeImage: (state, action:PayloadAction<string>) => {
+      state.selectedImgURL = action.payload
+    }
   },
 });
 
-export const { changeColor, toggleGlowEffect, toggleWithImg, changeContent } = QRFormSlice.actions;
+export const {
+  changeColor,
+  toggleGlowEffect,
+  toggleWithImg,
+  changeContent,
+  changeImage,
+} = QRFormSlice.actions;
 export default QRFormSlice.reducer;

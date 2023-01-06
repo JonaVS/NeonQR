@@ -13,11 +13,12 @@ const QRForm = () => {
     state,
     handleSwitchGlowToggle,
     handleSwitchWithImgToggle,
+    handleImgFileChange,
     debouncedHandleColorChange,
     debouncedHandleContentChange,
   } = useQRForm();
-  
-  const {colors, glow, withImg} = state
+
+  const {colors, glow, withImg, selectedImgURL} = state
 
   return (
     <chakra.form marginTop={12}>
@@ -43,7 +44,11 @@ const QRForm = () => {
         </Flex>
         <QRFormHeading text="Image" />
         <Flex alignItems="center">
-          <QRFormIconPicker isDisabled={!withImg} />
+          <QRFormIconPicker
+            isDisabled={!withImg}
+            onChange={handleImgFileChange}
+            selectedImgURL={selectedImgURL}
+          />
           <QRFormSwitch
             text="Image"
             idForLabel="image"
@@ -52,7 +57,10 @@ const QRForm = () => {
           />
         </Flex>
         <QRFormHeading text="Content" />
-        <QRFormTextInput defaultValue="" onChange={debouncedHandleContentChange} />
+        <QRFormTextInput
+          defaultValue=""
+          onChange={debouncedHandleContentChange}
+        />
         <QRFormButton />
       </Stack>
     </chakra.form>

@@ -9,16 +9,24 @@ import {
   ColorPayload,
 } from "../components/QRForm/QRFormSlice";
 import { useDebouncedCallback } from "use-debounce";
+import { optimizeQRCodeImg } from "../utils/imgOptimizer";
 
 export const useQRForm = () => {
-  const { colors, glow, withImg } = useSelector((state: RootState) => state.qrform);
+  const { colors, glow, withImg, selectedImgURL } = useSelector((state: RootState) => state.qrform);
 
   const dispatch = useDispatch();
+
+  let fileReader: FileReader
+
+  const mimeType = /image\/(png|jpg|jpeg)/i;
 
   useEffect(() => {
     return (): void => {
         debouncedHandleColorChange.cancel;
         debouncedHandleContentChange.cancel;
+        if (fileReader && fileReader.readyState === 1) {
+          fileReader.abort();
+        }
     };
   }, []);
 
@@ -39,6 +47,19 @@ export const useQRForm = () => {
     },
     300
   );
+  
+  const handleImgFileChange = ( event: React.ChangeEvent<HTMLInputElement>): void => {
+    if (!event.target.files || event.target.value.length == 0) return;
+    const selectedFile = event.target.files[0];
+    if (!selectedFile.type.match(mimeType)) return
+    
+    fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      const rawLoadedImgURL = fileReader.result as string;
+      optimizeQRCodeImg(rawLoadedImgURL, dispatch);
+    };
+    fileReader.readAsDataURL(selectedFile);
+  };
 
   const handleSwitchGlowToggle = (): void => {
     dispatch(toggleGlowEffect(!glow));
@@ -49,9 +70,10 @@ export const useQRForm = () => {
   };
 
   return {
-    state: {colors, glow, withImg},
+    state: {colors, glow, withImg, selectedImgURL},
     handleSwitchGlowToggle,
     handleSwitchWithImgToggle,
+    handleImgFileChange,
     debouncedHandleColorChange,
     debouncedHandleContentChange
   };

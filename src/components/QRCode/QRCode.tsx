@@ -5,14 +5,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 const QRCode = () => {
-  const { colors, glow, content, withImg } = useSelector(
+  const { colors, glow, content, withImg, selectedImgURL } = useSelector(
     (state: RootState) => state.qrform
   );
 
   const {contentColor, bgColor} = colors
 
   const imageSettings = withImg
-    ? { src: defaultImg, excavate: true, height: 40, width: 40 }
+    ? {
+        src: selectedImgURL ? selectedImgURL : defaultImg,
+        excavate: true,
+        height: 40,
+        width: 40,
+      }
     : undefined;
 
   return (
