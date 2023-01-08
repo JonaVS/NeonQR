@@ -22,7 +22,7 @@ const QRForm = () => {
   const {colors, glow, withImg, selectedImgURL} = state
 
   return (
-    <chakra.form marginTop={12}>
+    <chakra.form marginTop={12} onSubmit={(e) => e.preventDefault()}>
       <Stack spacing="3.5">
         <QRFormHeading text="Colors" />
         <Flex alignItems="center" gap="3">
