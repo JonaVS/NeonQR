@@ -10,10 +10,11 @@ import {
   toggleWithImg,
   ColorPayload,
 } from "../components/QRForm/QRFormSlice";
-import { optimizeQRCodeImg } from "../utils/imgOptimizer";
 import { toPng } from "html-to-image";
-import { saveAs } from "file-saver";
+import { optimizeQRCodeImg } from "../utils/imgOptimizer";
 import { isAppleDevice } from "../utils/deviceChecker";
+import { nanoid } from 'nanoid'
+import { saveAs } from "file-saver";
 
 export const useQRForm = () => {
   const { colors, glow, withImg, selectedImgURL } = useSelector((state: RootState) => state.qrform);
@@ -96,7 +97,8 @@ export const useQRForm = () => {
     if (isAppleDevice) await toPng(node)
 
     const dataURL = await toPng(node)
-    saveAs(dataURL, 'testExport.png')
+    const fileName = `neonqr-${nanoid(10)}.png`
+    saveAs(dataURL, fileName)
   }
 
   return {
