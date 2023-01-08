@@ -4,6 +4,8 @@ import { QRCodeSVG } from "qrcode.react";
 export const StyledQRCodeSVG = styled(QRCodeSVG)`
   margin: auto;
   filter: url(#f2) brightness(1);
+  transform:  translateZ(0);
+  -webkit-transform: translateZ(0);
   path:nth-of-type(1) {
     fill: ${(props) => props.bgColor || "black"};
   }
