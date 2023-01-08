@@ -14,6 +14,7 @@ const QRForm = () => {
     handleSwitchGlowToggle,
     handleSwitchWithImgToggle,
     handleImgFileChange,
+    handleGetAsImage,
     debouncedHandleColorChange,
     debouncedHandleContentChange,
   } = useQRForm();
@@ -61,7 +62,7 @@ const QRForm = () => {
           defaultValue=""
           onChange={debouncedHandleContentChange}
         />
-        <QRFormButton />
+        <QRFormButton onClick={handleGetAsImage} />
       </Stack>
     </chakra.form>
   );

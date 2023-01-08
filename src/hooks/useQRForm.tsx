@@ -11,6 +11,8 @@ import {
   ColorPayload,
 } from "../components/QRForm/QRFormSlice";
 import { optimizeQRCodeImg } from "../utils/imgOptimizer";
+import { toPng } from "html-to-image";
+import { saveAs } from "file-saver";
 
 export const useQRForm = () => {
   const { colors, glow, withImg, selectedImgURL } = useSelector((state: RootState) => state.qrform);
@@ -81,11 +83,19 @@ export const useQRForm = () => {
     dispatch(toggleWithImg(!withImg));
   };
 
+  const handleGetAsImage = async ():Promise<void> => {
+    const node = document.getElementById("to-img-target");
+    if (!node) return
+    const dataURL = await toPng(node)
+    saveAs(dataURL, 'testExport.png')
+  }
+
   return {
     state: {colors, glow, withImg, selectedImgURL},
     handleSwitchGlowToggle,
     handleSwitchWithImgToggle,
     handleImgFileChange,
+    handleGetAsImage,
     debouncedHandleColorChange,
     debouncedHandleContentChange
   };
