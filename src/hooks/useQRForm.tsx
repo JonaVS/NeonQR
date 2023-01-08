@@ -13,6 +13,7 @@ import {
 import { optimizeQRCodeImg } from "../utils/imgOptimizer";
 import { toPng } from "html-to-image";
 import { saveAs } from "file-saver";
+import { isAppleDevice } from "../utils/deviceChecker";
 
 export const useQRForm = () => {
   const { colors, glow, withImg, selectedImgURL } = useSelector((state: RootState) => state.qrform);
@@ -86,6 +87,14 @@ export const useQRForm = () => {
   const handleGetAsImage = async ():Promise<void> => {
     const node = document.getElementById("to-img-target");
     if (!node) return
+    /*
+      On Apple devices, the first time the GET as PNG button is pressed, 
+      the returned image from the toPng method will not contain the selected/default image inside the QRCode.
+
+      For now, calling toPng method twice on these devices resolves the issue.
+     */
+    if (isAppleDevice) await toPng(node)
+
     const dataURL = await toPng(node)
     saveAs(dataURL, 'testExport.png')
   }
