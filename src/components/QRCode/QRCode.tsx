@@ -1,15 +1,16 @@
 import React from "react";
-import { StyledQRCodeSVG } from "./QRCode.styles";
-import defaultImg from "../../assets/defaultImg.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import defaultImg from "../../assets/defaultImg.png";
+import QRCodeFilters from "../QRCodeFilters/QRCodeFilters";
+import { StyledQRCodeSVG } from "./QRCode.styles";
 
 const QRCode = () => {
   const { colors, glow, content, withImg, selectedImgURL } = useSelector(
     (state: RootState) => state.qrform
   );
 
-  const {contentColor, bgColor} = colors
+  const { contentColor, bgColor } = colors;
 
   const imageSettings = withImg
     ? {
@@ -22,24 +23,7 @@ const QRCode = () => {
 
   return (
     <>
-      <svg height="0">
-        <filter id="f1">
-          <feDropShadow
-            dx="0"
-            dy="0"
-            stdDeviation={`${glow ? "0.4" : "0"}`}
-            floodColor={contentColor}
-          />
-        </filter>
-        <filter id="f2">
-          <feDropShadow
-            dx="0"
-            dy="0"
-            stdDeviation={`${glow ? "7" : "0"}`}
-            floodColor={contentColor}
-          />
-        </filter>
-      </svg>
+      <QRCodeFilters contentColor={contentColor} glow={glow} />
       <StyledQRCodeSVG
         color={contentColor}
         bgColor={bgColor}
