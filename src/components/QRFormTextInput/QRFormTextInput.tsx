@@ -7,6 +7,7 @@ const QRFormTextInput = (props:Props) => {
     <Input
       type="text"
       placeholder="Enter text or a URL"
+      fontFamily="Bakbak One"
       variant="flushed"
       borderBottomColor="theme.cyan"
       color="whiteAlpha.900"
