@@ -5,7 +5,9 @@ import Navbrand from "../NavBrand/NavBrand";
 const Navbar = () => {
   return (
     <Flex
-      bg="black"
+      bg="#0000005e"
+      backdropFilter='auto' 
+      backdropBlur='8px'
       p={5}
       justify="space-between"
       alignItems="center"
