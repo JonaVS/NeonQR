@@ -20,6 +20,7 @@ const QRFormButton = (props: Props) => {
       variants={toPngBtn}
       whileTap={toPngBtn.tap}
       backgroundColor="#8c00ff"
+      fontFamily="Bakbak One"
       minW="36"
       alignSelf="center"
       boxShadow="0 0 5px #8c00ff, 0 0 10px #8c00ff"
