@@ -1,4 +1,5 @@
 import "@fontsource/monoton";
+import "@fontsource/bakbak-one"
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";

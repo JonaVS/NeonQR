@@ -13,7 +13,7 @@ const QRFormHeading = ({ text }: Props) => {
       size="sm"
       color="whiteAlpha.900"
       fontWeight="bold"
-      fontFamily="Helvetica"
+      fontFamily="Bakbak One"
       textTransform="uppercase"
       border="solid transparent 3px"
       borderLeftColor="whiteAlpha.500"
