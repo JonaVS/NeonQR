@@ -25,7 +25,7 @@ const QRCode = () => {
     <>
       <QRCodeFilters contentColor={contentColor} glow={glow} />
       <StyledQRCodeSVG
-        color={contentColor}
+        color={glow ? "#d3d3d3" : contentColor}
         bgColor={bgColor}
         value={content}
         size={250}
