@@ -1,13 +1,12 @@
 import React from "react";
 import { useQRForm } from "../../hooks/useQRForm";
-import { chakra, Stack, Flex, Radio } from "@chakra-ui/react";
+import { chakra, Stack, Flex } from "@chakra-ui/react";
 import QRFormColorInput from "../QRFormColorInput/QRFormColorInput";
 import QRFormSwitch from "../QRFormSwitch/QRFormSwitch";
 import QRFormImagePicker from "../QRFormImagePicker/QRFormImagePicker";
 import QRFormTextInput from "../QRFormTextInput/QRFormTextInput";
 import QRFormHeading from "../QRFormHeading/QRFormHeading";
 import QRFormButton from "../QRFormButton/QRFormButton";
-import QRFormRadioGroup from "../QRFormRadioGroup/QRFormRadioGroup";
 
 const QRForm = () => {
   const {
@@ -20,7 +19,7 @@ const QRForm = () => {
     debouncedHandleContentChange,
   } = useQRForm();
 
-  const { colors, glow, withImg, selectedImgURL } = state;
+  const {colors, glow, withImg, selectedImgURL} = state
 
   return (
     <chakra.form marginTop={12} onSubmit={(e) => e.preventDefault()}>
@@ -37,13 +36,6 @@ const QRForm = () => {
             name="contentColor"
             onChange={debouncedHandleColorChange}
           />
-        </Flex>
-        <QRFormHeading text="Glow" />
-        <Flex alignItems="center" gap="3">
-          <QRFormRadioGroup defaultValue="1" isDisabled={!glow}>
-            <Radio value="1">Type 1</Radio>
-            <Radio value="2">Type 2</Radio>
-          </QRFormRadioGroup>
           <QRFormSwitch
             text="Glow"
             idForLabel="glow"
