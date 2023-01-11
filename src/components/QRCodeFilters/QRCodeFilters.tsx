@@ -2,10 +2,9 @@ import React from "react";
 
 type Props = {
   contentColor: string;
-  glow: boolean;
 };
 
-const QRCodeFilters = ({ contentColor, glow }: Props) => {
+const QRCodeFilters = ({ contentColor }: Props) => {
   return (
     <svg height="0">
       <filter id="f1" x="-50%" y="-50%" width="200%" height="300%">
@@ -22,7 +21,7 @@ const QRCodeFilters = ({ contentColor, glow }: Props) => {
         <feDropShadow
           dx="0"
           dy="0"
-          stdDeviation={`${glow ? "0.45" : "0"}`}
+          stdDeviation="0.45"
           floodColor={contentColor}
         />
       </filter>
@@ -31,7 +30,7 @@ const QRCodeFilters = ({ contentColor, glow }: Props) => {
         <feDropShadow
           dx="0"
           dy="0"
-          stdDeviation={`${glow ? "4" : "0"}`}
+          stdDeviation="4"
           floodColor="#d3d3d3"
         />
         {Array.from({ length: 2 }).map((_, idx) => (
@@ -39,7 +38,7 @@ const QRCodeFilters = ({ contentColor, glow }: Props) => {
             key={idx}
             dx="0"
             dy="0"
-            stdDeviation={`${glow ? "4" : "0"}`}
+            stdDeviation= "4"
             floodColor={contentColor}
           />
         ))}
