@@ -70,10 +70,20 @@ export const useQRForm = () => {
     }
     
     fileReader = new FileReader();
-    fileReader.onload = () => {
+    fileReader.onload = (): void => {
       const rawLoadedImgURL = fileReader.result as string;
       optimizeQRCodeImg(rawLoadedImgURL, dispatch);
     };
+    fileReader.onerror = (): void => {
+      toast({
+        title: 'Loading file error',
+        description: "An error ocurred while loading the file ☹️. Please try again.",
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+        variant: "left-accent",
+      })
+    }
     fileReader.readAsDataURL(selectedFile);
   };
 
