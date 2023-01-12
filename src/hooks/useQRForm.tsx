@@ -70,7 +70,7 @@ export const useQRForm = () => {
     }
     
     fileReader = new FileReader();
-    fileReader.onloadend = () => {
+    fileReader.onload = () => {
       const rawLoadedImgURL = fileReader.result as string;
       optimizeQRCodeImg(rawLoadedImgURL, dispatch);
     };
