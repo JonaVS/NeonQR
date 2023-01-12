@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { QRCodeSVG } from "qrcode.react";
 
 type Props = {
-  glow: boolean
+  glow: 0 | 1
 }
 
 export const StyledQRCodeSVG = styled(QRCodeSVG)<Props>`
