@@ -13,6 +13,7 @@ const QRFormSwitch = ({text, idForLabel, ...props}: Props) => {
       <FormLabel htmlFor={idForLabel}>
         <Text
           as="span"
+          fontFamily="Bakbak One"
           textShadow={`0 0 5px ${shadowColor}, 0 0 5px ${shadowColor}`}
           fontWeight="bold"
         >
