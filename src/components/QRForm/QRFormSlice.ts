@@ -13,7 +13,7 @@ export type QRFormState = {
 
 const initialState: QRFormState = {
   colors: {
-    contentColor: "#00ffff",
+    contentColor: "#00FFBF",
     bgColor: "#000000",
   },
   glow: true,
