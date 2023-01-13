@@ -14,7 +14,7 @@ const Footer = () => {
     >
       <Link href="https://github.com/JonaVS" isExternal>
         <Text as="span" textShadow="0 0 5px #8c00ff, 0 0 10px #8c00ff">
-          Made by JonaVS
+          Developed by JonaVS
         </Text>
       </Link>
     </Flex>
