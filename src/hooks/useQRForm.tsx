@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useDebouncedCallback } from "use-debounce";
+import { DebouncedState, useDebouncedCallback } from "use-debounce";
 import { useToast } from "@chakra-ui/react";
 import { RootState } from "../store/store";
 import {
@@ -9,6 +9,7 @@ import {
   toggleGlowEffect,
   toggleWithImg,
   ColorPayload,
+  QRFormState,
 } from "../components/QRForm/QRFormSlice";
 import { toPng } from "html-to-image";
 import { optimizeQRCodeImg } from "../utils/imgOptimizer";
@@ -16,7 +17,17 @@ import { isAppleDevice } from "../utils/deviceChecker";
 import { nanoid } from 'nanoid'
 import { saveAs } from "file-saver";
 
-export const useQRForm = () => {
+type UseQRFormReturn = {
+  state: Omit<QRFormState, 'content'>; 
+  handleSwitchGlowToggle: () => void,
+  handleSwitchWithImgToggle: () => void,
+  handleImgFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleGetAsImage: () => Promise<void>,
+  debouncedHandleColorChange: DebouncedState<(event: React.ChangeEvent<HTMLInputElement>) => void>,
+  debouncedHandleContentChange: DebouncedState<(event: React.ChangeEvent<HTMLInputElement>) => void>
+}
+
+export const useQRForm = (): UseQRFormReturn => {
   const { colors, glow, withImg, selectedImgURL } = useSelector((state: RootState) => state.qrform);
 
   const dispatch = useDispatch();
