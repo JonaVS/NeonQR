@@ -14,6 +14,7 @@ import {
 import { toPng } from "html-to-image";
 import { optimizeQRCodeImg } from "../utils/imgOptimizer";
 import { isAppleDevice } from "../utils/deviceChecker";
+import { sharedToastOptions } from "../utils/appConstants";
 import { nanoid } from 'nanoid'
 import { saveAs } from "file-saver";
 
@@ -73,9 +74,7 @@ export const useQRForm = (): UseQRFormReturn => {
         title: 'Accepted files formats',
         description: "Please select a png, jpg or jpeg file 😀",
         status: 'error',
-        duration: 4000,
-        isClosable: true,
-        variant: "left-accent",
+        ...sharedToastOptions
       })
       return
     }
@@ -90,9 +89,7 @@ export const useQRForm = (): UseQRFormReturn => {
         title: 'Loading file error',
         description: "An error ocurred while loading the file ☹️. Please try again.",
         status: 'error',
-        duration: 4000,
-        isClosable: true,
-        variant: "left-accent",
+        ...sharedToastOptions
       })
     }
     fileReader.readAsDataURL(selectedFile);
