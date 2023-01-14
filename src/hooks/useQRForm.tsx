@@ -78,6 +78,15 @@ export const useQRForm = (): UseQRFormReturn => {
       })
       return
     }
+    if (selectedFile.size > 5000000) {
+      toast({
+        title: 'Image max size',
+        description: "Accepted image max size: 5 MB 😀",
+        status: 'warning',
+        ...sharedToastOptions
+      })
+      return
+    }
     
     fileReader = new FileReader();
     fileReader.onload = (): void => {
