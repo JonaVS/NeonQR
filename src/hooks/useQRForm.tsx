@@ -73,7 +73,7 @@ export const useQRForm = (): UseQRFormReturn => {
       toast({
         title: 'Accepted files formats',
         description: "Please select a png, jpg or jpeg file 😀",
-        status: 'error',
+        status: 'warning',
         ...sharedToastOptions
       })
       return
