@@ -30,11 +30,13 @@ const QRForm = () => {
             defaultValue={colors.bgColor}
             name="bgColor"
             onChange={debouncedHandleColorChange}
+            title="QR Code background color"
           />
           <QRFormColorInput
             defaultValue={colors.contentColor}
             name="contentColor"
             onChange={debouncedHandleColorChange}
+            title="QR Code content color"
           />
           <QRFormSwitch
             text="Glow"
@@ -49,6 +51,8 @@ const QRForm = () => {
             isDisabled={!withImg}
             onChange={handleImgFileChange}
             selectedImgURL={selectedImgURL}
+            title="QR Code image picker"
+            imgAlt="QR Code embedded image"
           />
           <QRFormSwitch
             text="Image"
@@ -62,7 +66,7 @@ const QRForm = () => {
           defaultValue=""
           onChange={debouncedHandleContentChange}
         />
-        <QRFormButton onClick={handleGetAsImage} />
+        <QRFormButton type="button" onClick={handleGetAsImage} />
       </Stack>
     </chakra.form>
   );
