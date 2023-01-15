@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import defaultImg from "../../assets/defaultImg.png";
 import QRCodeFilters from "../QRCodeFilters/QRCodeFilters";
-import { StyledQRCodeSVG } from "./QRCode.styles";
+import { chakra } from "@chakra-ui/react";
+import { QRCodeSVG } from "qrcode.react";
 
 const QRCode = () => {
   const { colors, glow, content, withImg, selectedImgURL } = useSelector(
@@ -24,10 +25,21 @@ const QRCode = () => {
   return (
     <>
       {glow && <QRCodeFilters contentColor={contentColor} />}
-      <StyledQRCodeSVG
-        color={glow ? "#d3d3d3" : contentColor}
-        bgColor={bgColor}
-        glow={glow ? 1 : 0 }
+      <chakra.svg
+        as={QRCodeSVG}
+        sx={{
+          filter: `${glow && "url(#f2) brightness(1.1) saturate(1.1)"}`,
+          WebkitTransform: "translateZ(0)",
+          transform: "translateZ(0)",
+          "path:nth-of-type(1)": {
+            fill: bgColor,
+          },
+          "path:nth-of-type(2)": {
+            fill: glow ? "#d3d3d3" : contentColor,
+            filter: `${glow && "url(#f1)"}`
+          }
+        }}
+        margin="auto"
         value={content}
         size={250}
         imageSettings={imageSettings}
