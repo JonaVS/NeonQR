@@ -9,8 +9,9 @@ const QRCodeFilters = ({ contentColor }: Props) => {
     <svg height="0">
       <filter id="f1" x="-50%" y="-50%" width="200%" height="300%">
         <feOffset dx="0" dy="0" />
-        <feGaussianBlur stdDeviation="0.8" result="offset-blur" />
-        <feGaussianBlur stdDeviation="0.8" result="offset-blur" />
+        {Array.from({ length: 2 }).map((_, idx) => (
+          <feGaussianBlur key={idx} stdDeviation="0.3" result="offset-blur" />
+        ))}
         <feComposite operator="out" in="SourceGraphic" result="inverse" />
         <feFlood floodColor={contentColor} floodOpacity="1" result="color" />
         <feComposite operator="in" in="color" in2="inverse" result="shadow" />
@@ -30,7 +31,7 @@ const QRCodeFilters = ({ contentColor }: Props) => {
         <feDropShadow
           dx="0"
           dy="0"
-          stdDeviation="4"
+          stdDeviation="3"
           floodColor="#d3d3d3"
         />
         {Array.from({ length: 2 }).map((_, idx) => (
@@ -38,7 +39,7 @@ const QRCodeFilters = ({ contentColor }: Props) => {
             key={idx}
             dx="0"
             dy="0"
-            stdDeviation= "4"
+            stdDeviation= "3"
             floodColor={contentColor}
           />
         ))}
