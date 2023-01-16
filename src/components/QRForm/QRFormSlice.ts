@@ -14,10 +14,10 @@ export type QRFormState = {
 const initialState: QRFormState = {
   colors: {
     contentColor: "#00FFBF",
-    bgColor: "#000000",
+    bgColor: "#0A0A0A",
   },
   glow: true,
-  content: "https://github.com/JonaVS",
+  content: "https://github.com/JonaVS/NeonQR",
   withImg: true,
   selectedImgURL: null
 };
