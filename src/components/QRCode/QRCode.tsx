@@ -40,6 +40,7 @@ const QRCode = () => {
               filter: `${glow && "url(#f1)"}`,
             },
           }}
+          level="Q"
           margin="auto"
           value={content}
           size={250}
