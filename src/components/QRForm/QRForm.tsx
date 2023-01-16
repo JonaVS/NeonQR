@@ -39,8 +39,8 @@ const QRForm = () => {
             title="QR Code content color"
           />
           <QRFormSwitch
-            text="Glow"
-            idForLabel="glow"
+            text="Neon"
+            idForLabel="neon"
             isChecked={glow}
             onChange={handleSwitchGlowToggle}
           />
