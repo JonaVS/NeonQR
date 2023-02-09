@@ -7,6 +7,7 @@ import QRFormImagePicker from "../QRFormImagePicker/QRFormImagePicker";
 import QRFormTextInput from "../QRFormTextInput/QRFormTextInput";
 import QRFormHeading from "../QRFormHeading/QRFormHeading";
 import QRFormButton from "../QRFormButton/QRFormButton";
+import UsageInfo from "../UsageInfo/UsageInfo";
 
 const QRForm = () => {
   const {
@@ -24,7 +25,13 @@ const QRForm = () => {
   return (
     <chakra.form marginTop={12} onSubmit={(e) => e.preventDefault()}>
       <Stack spacing="3.5">
-        <QRFormHeading text="Colors" />
+        <Flex alignItems="center">
+          <QRFormHeading text="Colors" />
+          <UsageInfo
+            title="Colors tip"
+            messageBody="To see the neon effect, use dark colors for the background and light colors for the content."
+          />
+        </Flex>
         <Flex alignItems="center" gap="3">
           <QRFormColorInput
             defaultValue={colors.bgColor}
