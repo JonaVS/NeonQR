@@ -52,7 +52,13 @@ const QRForm = () => {
             onChange={handleSwitchGlowToggle}
           />
         </Flex>
-        <QRFormHeading text="Image" />
+        <Flex alignItems="center">
+          <QRFormHeading text="Image" />
+          <UsageInfo
+            title="Image | Logo info"
+            messageBody="Max file size: 5 Mb. Files formats: png, jpg or jpeg."
+          />
+        </Flex>
         <Flex alignItems="center">
           <QRFormImagePicker
             isDisabled={!withImg}
