@@ -1,6 +1,6 @@
 # NeonQR
 
-![neonqrhome](https://user-images.githubusercontent.com/79957968/212789179-95d6e01d-1f86-48d1-a4d8-7eb5b2a57800.PNG)
+![NeonGit](https://user-images.githubusercontent.com/79957968/217949862-4dee93de-b915-4d32-b64d-da4411e81588.PNG)
 
 ![trineong](https://user-images.githubusercontent.com/79957968/212788079-7929ac35-0ba5-4081-8ddb-82974a4659e3.png)
 
